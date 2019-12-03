@@ -6,6 +6,9 @@ from Dado import Dado
 
 ColorBlanco = (255,255,255)
 ColorVerde = (150,243,23)
+ColorRojo =  (218, 29, 40)
+ColorMorado = (113, 29, 218)
+ColorAzul = (29, 218, 207)
 pygame.init()
 
 #pygame.transform_scale(imagen, tamaño)
@@ -19,6 +22,7 @@ btnDados = Button(ColorVerde, 985, 200, 150, 50, "Lanzar Dados")
 dado1 = Dado()
 dado2 = Dado()
 
+
 while running:
     display.fill(ColorBlanco)
     tab = tablero.dibujar()
@@ -27,6 +31,15 @@ while running:
     display.blit(txtTurno, (960, 280))
     display.blit(dado1.img, (970, 100))
     display.blit(dado2.img, (1070, 100))
+    pygame.draw.circle(display, ColorVerde, (985, 400), 50, 0)
+    pygame.draw.circle(display, ColorRojo, (1140, 400), 50, 0)
+    pygame.draw.circle(display, ColorMorado, (985, 550), 50, 0)
+    pygame.draw.circle(display, ColorAzul, (1140, 550), 50, 0)
+    pygame.draw.circle(display, (0,0,0), (985, 400), 50, 5)
+
+    #turnos
+    
+    
 
     pygame.display.update()
 
