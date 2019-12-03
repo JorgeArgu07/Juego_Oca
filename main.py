@@ -1,3 +1,4 @@
+from Menu import *
 import pygame,sys
 from pygame.locals import *
 from Tablero import Tablero
