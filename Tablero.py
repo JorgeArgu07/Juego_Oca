@@ -1,11 +1,9 @@
 import pygame, sys
-
+from pygame.locals import *
 class Tablero:
     def __init__(self):
-        self.x
-        self.y
-        self.img
-        self.width
-        self.height
+        self.img = pygame.image.load("resources/tablero.jpg")
+
     def dibujar(self):
-        pygame.init()
+        tablero = pygame.transform.scale(self.img, [800, 600])
+        return tablero
