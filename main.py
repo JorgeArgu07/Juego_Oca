@@ -1,4 +1,4 @@
-import pygame,sys
+  import pygame,sys
 from pygame.locals import *
 from Tablero import Tablero
 
