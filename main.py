@@ -1,5 +1,6 @@
 import pygame,sys
 from pygame.locals import *
+from Menu import Menu
 from Tablero import Tablero
 from Button import Button
 from Dado import Dado
@@ -65,6 +66,7 @@ class Main:
                         pass
                         dado1.lanzarDado()
                         dado2.lanzarDado()
-
+menu = Menu()
+menu.dibujarmenu()
 main = Main()
 main.iniciar()
