@@ -1,4 +1,4 @@
-  import pygame,sys
+import pygame, sys
 from pygame.locals import *
 from Tablero import Tablero
 from Button import Button
@@ -18,7 +18,8 @@ class Main:
         #pygame.transform_scale(imagen, tamaño)
         imgfondo = pygame.image.load("resources/fondo.jpg")
         imgfondo = pygame.transform.scale(imgfondo, [1280, 680])
-        fuente = pygame.font.SysFont('Arial', 32)
+       # fuente = pygame.font.SysFont('Arial', 32)
+
         txtTurno = fuente.render("Jugador en turno", 1, (0, 0, 0))
         running = True
         display = pygame.display.set_mode((1280, 680))
