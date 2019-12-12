@@ -18,7 +18,7 @@ class Main:
         #pygame.transform_scale(imagen, tamaño)
         imgfondo = pygame.image.load("resources/fondo.jpg")
         imgfondo = pygame.transform.scale(imgfondo, [1280, 680])
-       # fuente = pygame.font.SysFont('Arial', 32)
+        fuente = pygame.font.SysFont('Arial', 32)
 
         txtTurno = fuente.render("Jugador en turno", 1, (0, 0, 0))
         running = True
