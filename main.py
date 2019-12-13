@@ -1,5 +1,6 @@
 import pygame, sys
 from pygame.locals import *
+from Menu import Menu
 from Tablero import Tablero
 from Button import Button
 from Dado import Dado
@@ -18,7 +19,7 @@ class Main:
         #pygame.transform_scale(imagen, tamaño)
         imgfondo = pygame.image.load("resources/fondo.jpg")
         imgfondo = pygame.transform.scale(imgfondo, [1280, 680])
-        fuente = pygame.font.SysFont('Arial', 32)
+        fuente = pygame.font.SysFont('Calibri', 32)
 
         txtTurno = fuente.render("Jugador en turno", 1, (0, 0, 0))
         running = True
@@ -48,6 +49,9 @@ class Main:
             pygame.draw.circle(display, ColorAzul, (1140, 550), 50, 0)
             pygame.draw.circle(display, (0,0,0), (985, 400), 50, 5)
 
+
+
+
             pygame.display.update()
 
 
@@ -66,6 +70,7 @@ class Main:
                         pass
                         dado1.lanzarDado()
                         dado2.lanzarDado()
+
 
 main = Main()
 main.iniciar()
