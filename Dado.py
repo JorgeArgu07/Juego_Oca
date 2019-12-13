@@ -48,3 +48,4 @@ class Dado:
             imagen = pygame.image.load("resources/dado_seis.png")
             cara = pygame.transform.scale(imagen, [width, height])
             self.img = cara
+        return num
