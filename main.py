@@ -8,6 +8,9 @@ from jugadores import Jugador
 import time
 
 #Variables globales
+gamers=0
+arreglogamers=[]
+turno=0
 dado1 = Dado()
 dado2 = Dado()
 dimensiones = [1280, 680]
@@ -18,8 +21,10 @@ ColorRojo = (218, 29, 40)
 ColorMorado = (113, 29, 218)
 ColorAzul = (29, 218, 207)
 ColorGris = (229, 229, 229)
+colores=[ColorRojo,ColorAzul,ColorVerde,ColorMorado]
 di=0
 d2=0
+
 
 
 posiciones = [
@@ -71,7 +76,7 @@ posiciones = [
     [616, 458],  # casilla  41
     [653, 428],  # casilla  42
     [666, 378],  # casilla  43
-    [685, 400],  # casilla  44
+    [666, 320],  # casilla  44
     [666, 274],  # casilla  45
     [656, 228],  # casilla  46
     [629, 208],  # casilla  47
@@ -94,7 +99,7 @@ posiciones = [
     [463, 382],  # casilla  62
     [530, 382],  # casilla  63
     ]
-jugador1 = Jugador(pantalla,posiciones,0, ColorAzul)
+jugador1 = Jugador(pantalla,posiciones,63, ColorAzul,0,0,0)
 
 def dibijar_mesa():
     panel = pygame.transform.scale(imagen_panel, [1280,680])
@@ -103,17 +108,13 @@ def dibijar_mesa():
     display.blit(tablero.dibujar(), (30, 30))
 
 def iniciar():
-    actualizar()
+    p = 0
+    actualizar(p)
     running = True
     btnDados = Button(ColorVerde, 985, 200, 150, 50, "Lanzar Dados")
 
 
     while running:
-
-
-        jugador1.moverPosicion()
-
-
 
 
         for event in pygame.event.get():
@@ -128,28 +129,83 @@ def iniciar():
                     btnDados.color = ColorVerde
             elif event.type == MOUSEBUTTONDOWN:
                 if btnDados.isOver(pos):
-                    d1 = dado1.lanzarDado()
-                    d2 = dado2.lanzarDado()
-                    total = d1 + d2
 
-                    a = posiciones[total]
-                    x = a[0]
-                    y = a[1]
-                    auxi=jugador1.casilla
-
-                    aux2=auxi + total
-                    print(auxi)
-                    print(aux2)
-                    for auxi in range(total):
-                        jugador1.casilla += 1
+                    if arreglogamers[p].turnos==0:
+                        arreglogamers[p].s=1
+                        d1 = dado1.lanzarDado()
+                        d2 = dado2.lanzarDado()
+                        total = d1 + d2
+                        count=0
+                        a = posiciones[total]
+                        x = a[0]
+                        y = a[1]
+                        print ("p")
+                        print(p)
+                        auxi=arreglogamers[p].casilla
+                        arreglogamers[p].casillant=auxi
+                        aux2=auxi + total
+                        if aux2==9 or aux2==8  or aux2==18 or aux2==27 or aux2==36 or aux2==45:
+                            total=total+total
                         print(auxi)
-                        jugador1.moverPosicion()
+                        print(aux2)
+                        for auxi in range(total):
 
-                        actualizar()
+                            print(auxi)
+                            pi=arreglogamers[p].casilla + 1
+                            arreglogamers[p].casilla += 1
+                            if pi<=63:
+                                arreglogamers[p].moverPosicion()
+                                actualizar(p)
+                                
+                            else:
+                                count+=1
+
+                        if arreglogamers[p].casilla==63:
+                            input("has ganado chaval")
+
+                        if count>0:
+                            arreglogamers[p].casilla = 63
+                            actualizar(p)
+                            for auxi in range(count):
+                                arreglogamers[p].casilla =arreglogamers[p].casilla - 1
+                                print(arreglogamers[p].casilla)
+
+                                arreglogamers[p].moverPosicion()
+                                actualizar(p)
+                        for f in range(gamers):
+                            if f!=p:
+                                if arreglogamers[p].casilla == arreglogamers[f].casilla:
+                                    arreglogamers[f].casilla = arreglogamers[p].casillant
+                                    arreglogamers[f].casillant = arreglogamers[f].casilla
+                                if arreglogamers[p].casilla==19:
+                                    arreglogamers[f].turnos=0
+                                    arreglogamers[p].turnos = 2
+                                if arreglogamers[p].casilla==42 or arreglogamers[p].casilla==54:
+                                    arreglogamers[f].turnos = 0
+                                    arreglogamers[p].turnos = 1
 
 
 
-def actualizar():
+
+                    else:
+                        actualizar(p)
+                        arreglogamers[p].turnos = 0
+                    actualizar(p)
+                    arreglogamers[p].s = 0
+                    actualizar(p)
+                    p = p + 1
+
+
+
+                    if p == gamers:
+                        p = 0
+                    actualizar(p)
+
+
+
+
+
+def actualizar(p):
     pygame.init()
 
     # pygame.transform_scale(imagen, tamaño)
@@ -172,13 +228,44 @@ def actualizar():
     display.blit(dado1.img, (970, 100))
     display.blit(dado2.img, (1070, 100))
 
-    pygame.draw.circle(display, ColorVerde, (985, 400), 50, 0)
-    pygame.draw.circle(display, ColorRojo, (1140, 400), 50, 0)
-    pygame.draw.circle(display, ColorMorado, (985, 550), 50, 0)
-    pygame.draw.circle(display, ColorAzul, (1140, 550), 50, 0)
-    pygame.draw.circle(display, (0, 0, 0), (985, 400), 50, 5)
+    adi = [[985, 400], [1140, 400], [985, 550], [1140, 550]]
+    pygame.draw.circle(display, ColorRojo, (985, 400), 50, 0)
+    pygame.draw.circle(display, ColorAzul, (1140, 400), 50, 0)
+    if gamers==3 or gamers==4:
+        pygame.draw.circle(display, ColorVerde, (985, 550), 50, 0)
+    if gamers==4:
+        pygame.draw.circle(display, ColorMorado, (1140, 550), 50, 0)
+    pygame.draw.circle(display, (0, 0, 0), (adi[p][0], adi[p][1]), 50, 5)
     jugador1.moverPosicion()
+    for i in range(gamers):
+        arreglogamers[i].moverPosicion()
     pygame.display.update()
 
+
+
+
+def jugadores(p):
+    print ("sssss")
+    for i in range(p):
+        color=colores[i]
+        jugador = Jugador(pantalla, posiciones, 0, color,0,0,0)
+        arreglogamers.append(jugador)
+        print(arreglogamers[turno].color)
+
+
 if __name__ == '__main__':
-    Menu.dibujarmenu()
+    q=Menu.dibujarmenu()
+    if q==1:
+        qw=Menu.dibujarmenujugadores()
+    if qw == 2:
+        Menu.dibujarMenuJugadoresNombres(2)
+    if qw==3:
+        Menu.dibujarMenuJugadoresNombres(3)
+    if qw==4:
+        Menu.dibujarMenuJugadoresNombres(4)
+    gamers=qw
+
+    print (q)
+    print (qw)
+    jugadores(gamers)
+    iniciar()
