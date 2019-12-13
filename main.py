@@ -100,7 +100,7 @@ posiciones = [
     [463, 382],  # casilla  62
     [530, 382],  # casilla  63
     ]
-jugador1 = Jugador(pantalla,posiciones,44, ColorAzul,0,0)
+jugador1 = Jugador(pantalla,posiciones,63, ColorAzul,0,0,0)
 
 def dibijar_mesa():
     panel = pygame.transform.scale(imagen_panel, [1280,680])
@@ -118,10 +118,6 @@ def iniciar():
     while running:
 
 
-
-
-
-
         for event in pygame.event.get():
             pos = pygame.mouse.get_pos()
             if event.type == QUIT:
@@ -135,38 +131,76 @@ def iniciar():
             elif event.type == MOUSEBUTTONDOWN:
                 if btnDados.isOver(pos):
 
-
-
-                    d1 = dado1.lanzarDado()
-                    d2 = dado2.lanzarDado()
-                    total = d1 + d2
-
-                    a = posiciones[total]
-                    x = a[0]
-                    y = a[1]
-                    print ("p")
-                    print(p)
-                    auxi=arreglogamers[p].casilla
-                    arreglogamers[p].casillant=auxi
-                    aux2=auxi + total
-                    print(auxi)
-                    print(aux2)
-                    for auxi in range(total):
-                        arreglogamers[p].casilla += 1
+                    if arreglogamers[p].turnos==0:
+                        arreglogamers[p].s=1
+                        d1 = dado1.lanzarDado()
+                        d2 = dado2.lanzarDado()
+                        total = d1 + d2
+                        count=0
+                        a = posiciones[total]
+                        x = a[0]
+                        y = a[1]
+                        print ("p")
+                        print(p)
+                        auxi=arreglogamers[p].casilla
+                        arreglogamers[p].casillant=auxi
+                        aux2=auxi + total
+                        if aux2==9 or aux2==8  or aux2==18 or aux2==27 or aux2==36 or aux2==45:
+                            total=total+total
                         print(auxi)
-                        arreglogamers[p].moverPosicion()
+                        print(aux2)
+                        for auxi in range(total):
+
+                            print(auxi)
+                            pi=arreglogamers[p].casilla + 1
+                            arreglogamers[p].casilla += 1
+                            if pi<=63:
+                                arreglogamers[p].moverPosicion()
+                                actualizar(p)
+                                
+                            else:
+                                count+=1
+
+                        if arreglogamers[p].casilla==63:
+                            input("has ganado chaval")
+
+                        if count>0:
+                            arreglogamers[p].casilla = 63
+                            actualizar(p)
+                            for auxi in range(count):
+                                arreglogamers[p].casilla =arreglogamers[p].casilla - 1
+                                print(arreglogamers[p].casilla)
+
+                                arreglogamers[p].moverPosicion()
+                                actualizar(p)
+                        for f in range(gamers):
+                            if f!=p:
+                                if arreglogamers[p].casilla == arreglogamers[f].casilla:
+                                    arreglogamers[f].casilla = arreglogamers[p].casillant
+                                    arreglogamers[f].casillant = arreglogamers[f].casilla
+                                if arreglogamers[p].casilla==19:
+                                    arreglogamers[f].turnos=0
+                                    arreglogamers[p].turnos = 2
+                                if arreglogamers[p].casilla==42 or arreglogamers[p].casilla==54:
+                                    arreglogamers[f].turnos = 0
+                                    arreglogamers[p].turnos = 1
+
+
+
+
+                    else:
                         actualizar(p)
-                    for f in range(gamers):
-                        if f!=p:
-                            if arreglogamers[p].casilla == arreglogamers[f].casilla:
-                                arreglogamers[f].casilla = arreglogamers[p].casillant
-                                arreglogamers[f].casillant = arreglogamers[f].casilla
+                        arreglogamers[p].turnos = 0
                     actualizar(p)
+                    arreglogamers[p].s = 0
+                    actualizar(p)
+                    p = p + 1
 
 
-                    p=p+1
-                    if p==gamers:
-                        p=0
+
+                    if p == gamers:
+                        p = 0
+                    actualizar(p)
 
 
 
@@ -215,7 +249,7 @@ def jugadores(p):
     print ("sssss")
     for i in range(p):
         color=colores[i]
-        jugador = Jugador(pantalla, posiciones, 0, color,0,0)
+        jugador = Jugador(pantalla, posiciones, 0, color,0,0,0)
         arreglogamers.append(jugador)
         print(arreglogamers[turno].color)
 
