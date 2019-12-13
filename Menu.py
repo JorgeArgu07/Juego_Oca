@@ -54,7 +54,7 @@ def dibujarmenu():
             elif event.type == MOUSEBUTTONDOWN:
                 if btnStart.isOver(pos):
                     pass
-                    dibujarmenujugadores()
+                    return 1
 
 def dibujarmenujugadores():
     pygame.init()
@@ -104,13 +104,13 @@ def dibujarmenujugadores():
             elif event.type == MOUSEBUTTONDOWN:
                 if btn2jugadores.isOver(pos):
                     pass
-                    dibujarMenuJugadoresNombres(2)
+                    return 2
                 if btn3jugadores.isOver(pos):
                     pass
-                    dibujarMenuJugadoresNombres(3)
+                    return 3
                 if btn4jugadores.isOver(pos):
                     pass
-                    dibujarMenuJugadoresNombres(4)
+                    return 4
 
 
 def dibujarMenuJugadoresNombres(NumeroJugadores):
@@ -162,7 +162,7 @@ def dibujarMenuJugadoresNombres(NumeroJugadores):
                 color = color_active if active else color_inactive
                 if iniciarjuego.isOver(pos):
                     pass
-                    main.iniciar()
+                    return 1
 
             if event.type == pygame.KEYDOWN:
                 if active:

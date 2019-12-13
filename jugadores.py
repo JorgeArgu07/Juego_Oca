@@ -5,11 +5,13 @@ import random
 
 class Jugador:
 
-    def __init__(self, pantalla, arregloPosiciones, casilla, color):
+    def __init__(self, pantalla, arregloPosiciones, casilla, color,casillant, turnos):
         self.pantalla = pantalla
         self.arregloPosiciones = arregloPosiciones
         self.casilla = casilla
         self.color = color
+        self.casillant=casillant
+        self.turnos=turnos
 
     def moverPosicion(self):
         pygame.draw.circle(self.pantalla, self.color,
