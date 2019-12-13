@@ -24,6 +24,8 @@ ColorGris = (229, 229, 229)
 colores=[ColorRojo,ColorAzul,ColorVerde,ColorMorado]
 di=0
 d2=0
+main = True
+
 
 
 
@@ -99,7 +101,7 @@ posiciones = [
     [463, 382],  # casilla  62
     [530, 382],  # casilla  63
     ]
-jugador1 = Jugador(pantalla,posiciones,63, ColorAzul,0,0,0,'juab')
+#jugador1 = Jugador(pantalla,posiciones,63, ColorAzul,0,0,0,'juab')
 
 def dibijar_mesa():
     panel = pygame.transform.scale(imagen_panel, [1280,680])
@@ -161,7 +163,8 @@ def iniciar():
                                 count+=1
 
                         if arreglogamers[p].casilla==63:
-                            Menu.dibujarMenuGanador(arreglogamers[p].nombre)
+
+                            running = Menu.dibujarMenuGanador(arreglogamers[p].nombre)
 
                         if count>0:
                             arreglogamers[p].casilla = 63
@@ -201,6 +204,18 @@ def iniciar():
                         p = 0
                     actualizar(p)
 
+    gs = []
+    d1 = 0
+    d2 = 0
+    for i in range(gamers):
+        arreglogamers.remove(0)
+        gs.remove(0)
+        #gamers = 0
+
+
+
+    turno = 0
+
 
 
 
@@ -237,7 +252,7 @@ def actualizar(p):
     if gamers==4:
         pygame.draw.circle(display, ColorMorado, (1140, 550), 50, 0)
     pygame.draw.circle(display, (0, 0, 0), (adi[p][0], adi[p][1]), 50, 5)
-    jugador1.moverPosicion()
+    #jugador1.moverPosicion()
     for i in range(gamers):
         arreglogamers[i].moverPosicion()
     pygame.display.update()
@@ -256,21 +271,21 @@ def jugadores(p, lo):
 
 
 if __name__ == '__main__':
-    q=Menu.dibujarmenu()
-    gs = []
-    if q==1:
-        qws=Menu.dibujarmenujugadores()
-    if qws == 2:
-        gs.append(Menu.dibujarMenuJugadoresNombres(2))
-    if qws==3:
-        gs.append(Menu.dibujarMenuJugadoresNombres(3))
-    if qws==4:
-        gs.append(Menu.dibujarMenuJugadoresNombres(4))
-    gamers=qws
+        q=Menu.dibujarmenu()
+        gs = []
+        if q==1:
+            qws=Menu.dibujarmenujugadores()
+        if qws == 2:
+            gs.append(Menu.dibujarMenuJugadoresNombres(2))
+        if qws==3:
+            gs.append(Menu.dibujarMenuJugadoresNombres(3))
+        if qws==4:
+            gs.append(Menu.dibujarMenuJugadoresNombres(4))
+        gamers=qws
 
-    print (gs[:])
+        print (gs[:])
 
-    print (q)
-    print (qws)
-    jugadores(gamers, gs)
-    iniciar()
+        print (q)
+        print (qws)
+        jugadores(gamers, gs)
+        iniciar()

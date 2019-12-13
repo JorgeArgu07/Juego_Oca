@@ -335,7 +335,7 @@ def dibujarMenuGanador(nombreGanador):
     txtTitulo = fuente.render("FELICIDADES", 1, (0, 0, 0))
     txtTitulo1 = fuente.render(nombreGanador, 1, (0, 0, 0))
     txtTitulo2 = fuente.render("HAS GANADO!!", 1, (0, 0, 0))
-    btnStart = Button(ColorVerde, 490, 400, 300, 100, "Continuar")
+    btnStart = Button(ColorVerde, 490, 400, 300, 100, "Salir")
 
     while True:
         window.blit(imgfondo, (0, 0))
@@ -361,4 +361,4 @@ def dibujarMenuGanador(nombreGanador):
             elif event.type == MOUSEBUTTONDOWN:
                 if btnStart.isOver(pos):
                     pass
-                    dibujarmenu()
+                    sys.exit()
