@@ -2,7 +2,7 @@ import pygame,sys
 from pygame.locals import *
 from Tablero import Tablero
 from Button import Button
-from main import main
+import main
 
 #Variables globales
 ColorBlanco = (255, 255, 255)
@@ -115,7 +115,6 @@ def dibujarmenujugadores():
 
 def dibujarMenuJugadoresNombres(NumeroJugadores):
 
-    Main = main()
     imgfondo = pygame.image.load("resources/fondo.jpg")
     imgfondo = pygame.transform.scale(imgfondo, [1280, 680])
     pygame.display.set_caption('Juego de la Oca')
@@ -163,7 +162,8 @@ def dibujarMenuJugadoresNombres(NumeroJugadores):
                 color = color_active if active else color_inactive
                 if iniciarjuego.isOver(pos):
                     pass
-                    Main.iniciar()
+                    main.iniciar()
+
             if event.type == pygame.KEYDOWN:
                 if active:
                     if event.key == pygame.K_RETURN:
