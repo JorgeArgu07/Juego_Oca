@@ -12,7 +12,10 @@ ColorMorado = (113, 29, 218)
 ColorAzul = (29, 218, 207)
 ColorGris = (229, 229, 229)
 ColorNegro = (000,000,000)
-
+nombre1 = ''
+nombre2 = ''
+nombre3 = ''
+nombre4 = ''
 
 def dibujarmenu():
     pygame.init()
@@ -112,7 +115,8 @@ def dibujarmenujugadores():
                     pass
                     return 4
 
-
+def monos():
+    return [nombre1,nombre2,nombre3,nombre4]
 def dibujarMenuJugadoresNombres(NumeroJugadores):
     pygame.init()
     fuenteTitulo = pygame.font.SysFont('Calibri', 100)
@@ -131,8 +135,8 @@ def dibujarMenuJugadoresNombres(NumeroJugadores):
     input_box3 = pygame.Rect(570, 300, 140, 32)
     input_box4 = pygame.Rect(570, 350, 140, 32)
 
-    color_inactive = pygame.Color(ColorNegro)
-    color_active = pygame.Color(ColorMorado)
+    color_inactive = pygame.Color(0,0,0)
+    color_active = pygame.Color(113, 29, 218)
     color1 = color_inactive
     color2 = color_inactive
     color3 = color_inactive
@@ -203,7 +207,7 @@ def dibujarMenuJugadoresNombres(NumeroJugadores):
                 color4 = color_active if active4 else color_inactive
                 if iniciarjuego.isOver(pos):
                     pass
-                    return 1
+                    return [nombre1, nombre2, nombre3, nombre4]
 
             if event.type == pygame.KEYDOWN:
                 if active1:
@@ -317,6 +321,7 @@ def dibujarMenuJugadoresNombres(NumeroJugadores):
 
         pygame.display.flip()
         clock.tick(10)
+
 
 def dibujarMenuGanador(nombreGanador):
     pygame.init()

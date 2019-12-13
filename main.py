@@ -99,7 +99,7 @@ posiciones = [
     [463, 382],  # casilla  62
     [530, 382],  # casilla  63
     ]
-jugador1 = Jugador(pantalla,posiciones,63, ColorAzul,0,0,0)
+jugador1 = Jugador(pantalla,posiciones,63, ColorAzul,0,0,0,'juab')
 
 def dibijar_mesa():
     panel = pygame.transform.scale(imagen_panel, [1280,680])
@@ -161,7 +161,7 @@ def iniciar():
                                 count+=1
 
                         if arreglogamers[p].casilla==63:
-                            input("has ganado chaval")
+                            Menu.dibujarMenuGanador(arreglogamers[p].nombre)
 
                         if count>0:
                             arreglogamers[p].casilla = 63
@@ -244,28 +244,32 @@ def actualizar(p):
 
 
 
-def jugadores(p):
+def jugadores(p, lo):
     print ("sssss")
     for i in range(p):
         color=colores[i]
-        jugador = Jugador(pantalla, posiciones, 0, color,0,0,0)
+        nombre=lo[0][i]
+        jugador = Jugador(pantalla, posiciones, 0, color,0,0,0, nombre)
         arreglogamers.append(jugador)
         print(arreglogamers[turno].color)
 
 
 if __name__ == '__main__':
     q=Menu.dibujarmenu()
+    gs = []
     if q==1:
-        qw=Menu.dibujarmenujugadores()
-    if qw == 2:
-        Menu.dibujarMenuJugadoresNombres(2)
-    if qw==3:
-        Menu.dibujarMenuJugadoresNombres(3)
-    if qw==4:
-        Menu.dibujarMenuJugadoresNombres(4)
-    gamers=qw
+        qws=Menu.dibujarmenujugadores()
+    if qws == 2:
+        gs.append(Menu.dibujarMenuJugadoresNombres(2))
+    if qws==3:
+        gs.append(Menu.dibujarMenuJugadoresNombres(3))
+    if qws==4:
+        gs.append(Menu.dibujarMenuJugadoresNombres(4))
+    gamers=qws
+
+    print (gs[:])
 
     print (q)
-    print (qw)
-    jugadores(gamers)
+    print (qws)
+    jugadores(gamers, gs)
     iniciar()
