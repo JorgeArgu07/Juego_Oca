@@ -317,3 +317,43 @@ def dibujarMenuJugadoresNombres(NumeroJugadores):
 
         pygame.display.flip()
         clock.tick(10)
+
+def dibujarMenuGanador(nombreGanador):
+    pygame.init()
+
+    imgfondo = pygame.image.load("resources/fondo.jpg")
+    imgfondo = pygame.transform.scale(imgfondo, [1280, 680])
+    pygame.display.set_caption('Juego de la Oca')
+    window = pygame.display.set_mode((1280, 680))
+
+    fuente = pygame.font.SysFont('Calibri Bold', 100)
+    txtTitulo = fuente.render("FELICIDADES", 1, (0, 0, 0))
+    txtTitulo1 = fuente.render(nombreGanador, 1, (0, 0, 0))
+    txtTitulo2 = fuente.render("HAS GANADO!!", 1, (0, 0, 0))
+    btnStart = Button(ColorVerde, 490, 400, 300, 100, "Continuar")
+
+    while True:
+        window.blit(imgfondo, (0, 0))
+
+        window.blit(txtTitulo, (400, 100))
+        window.blit(txtTitulo1, (550, 200))
+        window.blit(txtTitulo2, (370, 300))
+        btnStart.draw(window, (255, 255, 255))
+
+        pygame.display.update()
+
+        for event in pygame.event.get():
+            pos = pygame.mouse.get_pos()
+            if event.type == QUIT:
+                sys.exit()
+
+            elif event.type == MOUSEMOTION:
+                if btnStart.isOver(pos):
+                    btnStart.color = (135, 218, 29)
+                else:
+                    btnStart.color = ColorVerde
+
+            elif event.type == MOUSEBUTTONDOWN:
+                if btnStart.isOver(pos):
+                    pass
+                    dibujarmenu()
