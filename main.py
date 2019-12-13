@@ -6,6 +6,7 @@ from Button import Button
 from Dado import Dado
 from jugadores import Jugador
 import time
+from BD import BD
 
 #Variables globales
 gamers=0
@@ -163,8 +164,11 @@ def iniciar():
                                 count+=1
 
                         if arreglogamers[p].casilla==63:
-
+                            bd = BD()
+                            bd.setJugadores(arreglogamers[p].nombre)
                             running = Menu.dibujarMenuGanador(arreglogamers[p].nombre)
+                            
+
 
                         if count>0:
                             arreglogamers[p].casilla = 63
