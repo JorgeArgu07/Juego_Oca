@@ -7,7 +7,6 @@ from Dado import Dado
 from jugadores import Jugador
 import time
 
-
 #Variables globales
 dado1 = Dado()
 dado2 = Dado()
