@@ -144,7 +144,7 @@ def iniciar():
                         auxi=arreglogamers[p].casilla
                         arreglogamers[p].casillant=auxi
                         aux2=auxi + total
-                        if aux2==9 or aux2==8  or aux2==18 or aux2==27 or aux2==36 or aux2==45:
+                        if aux2 == 9 or aux2 == 8 or aux2 == 18 or aux2 == 27 or aux2 == 36 or aux2 == 45:
                             total=total+total
                         print(auxi)
                         print(aux2)
@@ -212,7 +212,8 @@ def actualizar(p):
     imgfondo = pygame.image.load("resources/fondo.jpg")
     imgfondo = pygame.transform.scale(imgfondo, [1280, 680])
     fuente = pygame.font.SysFont('Calibri', 32)
-    txtTurno = fuente.render("Jugador en turno", 1, (0, 0, 0))
+    nom=arreglogamers[p].nombre
+    txtTurno = fuente.render("Jugador en turno "+nom, 1, (0, 0, 0))
     running = True
     display = pygame.display.set_mode((1280, 680))
     pygame.display.set_caption("Juego de la Oca")
