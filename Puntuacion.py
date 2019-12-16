@@ -21,13 +21,14 @@ class Puntuacion:
         window = pygame.display.set_mode((1280, 680))
 
         fuente = pygame.font.SysFont('Calibri Bold', 100)
+        fuente2 = pygame.font.SysFont('Calibri', 50)
         txtTitulo = fuente.render("Puntuaciones", 1, (0, 0, 0))
 
         nombre = fuente.render("Puntuaciones", 1, (0, 0, 0))   
 
-        punt1 = fuente.render(puntuaciones[0][0], 1, (0, 0, 0))  
-        punt2 = fuente.render(puntuaciones[1][0], 1, (0, 0, 0))  
-        punt3 = fuente.render(puntuaciones[2][0], 1, (0, 0, 0))  
+        punt1 = fuente2.render("Puntos: "+str(puntuaciones[0][1])+" Juegos: "+str(puntuaciones[0][2])+" Jugador: "+puntuaciones[0][0], 1, (0, 0, 0))
+        punt2 = fuente2.render("Puntos: "+str(puntuaciones[1][1])+" Juegos: "+str(puntuaciones[1][2])+" Jugador: "+puntuaciones[1][0], 1, (0, 0, 0))
+        punt3 = fuente2.render("Puntos: "+str(puntuaciones[2][1])+" Juegos: "+str(puntuaciones[2][2])+" Jugador: "+puntuaciones[2][0], 1, (0, 0, 0))
         
 
         while True:
