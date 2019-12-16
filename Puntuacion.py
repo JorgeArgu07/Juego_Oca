@@ -23,13 +23,13 @@ def getPuntuaciones():
     fuente2 = pygame.font.SysFont('Calibri', 50)
     txtTitulo = fuente.render("Puntuaciones", 1, (0, 0, 0))
 
-    btnmenu = Button((150, 243, 23), 490, 340, 300, 100, "Regresar")
+    btnmenu = Button((150, 243, 23), 490, 500, 300, 100, "Regresar")
 
     nombre = fuente.render("Puntuaciones", 1, (0, 0, 0))
 
-    punt1 = fuente2.render("Puntos: "+str(puntuaciones[0][1])+" Juegos: "+str(puntuaciones[0][2])+" Jugador: "+puntuaciones[0][0], 1, (0, 0, 0))
-    punt2 = fuente2.render("Puntos: "+str(puntuaciones[1][1])+" Juegos: "+str(puntuaciones[1][2])+" Jugador: "+puntuaciones[1][0], 1, (0, 0, 0))
-    punt3 = fuente2.render("Puntos: "+str(puntuaciones[2][1])+" Juegos: "+str(puntuaciones[2][2])+" Jugador: "+puntuaciones[2][0], 1, (0, 0, 0))
+    punt1 = fuente2.render("1° Puntos: "+str(puntuaciones[0][1])+" Juegos: "+str(puntuaciones[0][2])+" Jugador: "+puntuaciones[0][0], 1, (0, 0, 0))
+    punt2 = fuente2.render("2° Puntos: "+str(puntuaciones[1][1])+" Juegos: "+str(puntuaciones[1][2])+" Jugador: "+puntuaciones[1][0], 1, (0, 0, 0))
+    punt3 = fuente2.render("3° Puntos: "+str(puntuaciones[2][1])+" Juegos: "+str(puntuaciones[2][2])+" Jugador: "+puntuaciones[2][0], 1, (0, 0, 0))
 
 
     while True:
@@ -57,4 +57,4 @@ def getPuntuaciones():
                     pass
                     return 2
 
-
+getPuntuaciones()
