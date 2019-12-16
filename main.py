@@ -253,7 +253,7 @@ def jugadores(p, lo):
         jugador = Jugador(pantalla, posiciones, 0, color,0,0,0, nombre)
         arreglogamers.append(jugador)
         print(arreglogamers[turno].color)
-
+                   
 
 if __name__ == '__main__':
     q=Menu.dibujarmenu()
@@ -273,4 +273,5 @@ if __name__ == '__main__':
     print (q)
     print (qws)
     jugadores(gamers, gs)
+
     iniciar()
