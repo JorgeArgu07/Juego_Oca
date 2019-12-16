@@ -3,7 +3,7 @@ from pygame.locals import *
 from Tablero import Tablero
 from Button import Button
 import main
-from Puntuacion import Puntuacion
+import Puntuacion
 
 #Variables globales
 ColorBlanco = (255, 255, 255)
@@ -60,8 +60,8 @@ def dibujarmenu():
                     pass
                     return 1
                 if btnScore.isOver(pos):
-                    p = Puntuacion()
-                    p.getPuntuaciones()
+                    pass
+                    return 2
 
 def dibujarmenujugadores():
     pygame.init()

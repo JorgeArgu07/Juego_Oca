@@ -1,6 +1,7 @@
 import pygame, sys
 from pygame.locals import *
 import Menu
+import Puntuacion
 from Tablero import Tablero
 from Button import Button
 from Dado import Dado
@@ -277,22 +278,27 @@ def jugadores(p, lo):
                    
 
 if __name__ == '__main__':
+    while True:
         q=Menu.dibujarmenu()
         gs = []
         if q==1:
             qws=Menu.dibujarmenujugadores()
-        if qws == 2:
-            gs.append(Menu.dibujarMenuJugadoresNombres(2))
-        if qws==3:
-            gs.append(Menu.dibujarMenuJugadoresNombres(3))
-        if qws==4:
-            gs.append(Menu.dibujarMenuJugadoresNombres(4))
-        gamers=qws
-        print (gs[:])
+            if qws == 2:
+                gs.append(Menu.dibujarMenuJugadoresNombres(2))
+            if qws == 3:
+                gs.append(Menu.dibujarMenuJugadoresNombres(3))
+            if qws == 4:
+                gs.append(Menu.dibujarMenuJugadoresNombres(4))
+            gamers = qws
+            print (gs[:])
 
-        print (q)
-        print (qws)
-        jugadores(gamers, gs)
-        print("nombres")
-        print(auxiliarnombres[:])
-        iniciar()
+            print (q)
+            print (qws)
+            jugadores(gamers, gs)
+            print("nombres")
+            print(auxiliarnombres[:])
+            iniciar()
+        if q==2:
+            puntos=Puntuacion.getPuntuaciones()
+
+
